@@ -80,6 +80,8 @@ body { width: 87.5%;
        margin-left: auto;
        margin-right: auto;
        padding-left: 12.5%;
+       text-align: justify;
+       text-justify: inter-word;
        font-family: et-bembo, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
        background-color: $bg-color;
        color: $text-color;
@@ -209,10 +211,11 @@ section { padding-top: 1rem;
           padding-bottom: 1rem; }
 
 
-ul,ol { width: 45%;
-     -webkit-padding-start: 5%;
-     -webkit-padding-end: 5%;
-     list-style-type: none; }
+ul,ol {
+    max-width: 92%;
+    -webkit-padding-start: 1em; 
+    list-style-type: '— '; 
+}
 
 //li { padding: 0.5em 0; } //vertical padding on list items screws up vertical rhythym
 
@@ -344,8 +347,9 @@ header > nav.group, body footer {
   padding-top: 2rem;
 }
 
-nav.group a.active:before{ content:"\0003c\000a0";} // escaped unicode for the carats and then a space on active menu links
-nav.group a.active:after{ content:"\000a0\0003e" ;}
+nav.group a { text-decoration: "underline"; }
+// nav.group a.active:before{ content:"\0003c\000a0";} // escaped unicode for the carats and then a space on active menu links
+// nav.group a.active:after{ content:"\000a0\0003e" ;}
 
 header > nav  a{
   font-size: 1.2rem;
@@ -355,7 +359,7 @@ header > nav  a{
   color: $contrast-color;
   padding-top: 1.5rem;
   text-decoration: none;
-  display: inline-block;
+  //display: inline-block;
   float: left;
   margin-top: 0;
   margin-bottom: 0;
@@ -595,3 +599,31 @@ hr.slender {
   content: "\e60e";
 }
 /*-- End of Icomoon icon font section --*/
+
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.videoWrapper img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.videoWrapper video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}

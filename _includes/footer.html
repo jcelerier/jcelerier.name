@@ -1,7 +1,6 @@
 <footer>
-  <hr class="slender">
   <ul class="footer-links">
-    <li><a href="mailto:hate@spam.net"><span class="icon-mail"></span></a></li>    
+    <li><a href="mailto:jeanmichael.celerier@gmail.com"><span class="icon-mail"></span></a></li>    
     {% for entry in site.data.social %}
       <li>
         <a href="{{ entry.link }}"><span class="{{ entry.icon }}"></span></a>
@@ -9,7 +8,6 @@
     {% endfor %}  
   </ul>
 <div class="credits">
-<span>&copy; {{ site.time | date: '%Y' }} &nbsp;&nbsp;{{site.author | upcase }}</span></br> <br>
-<span>This site created with the <a href="//github.com/clayh53/tufte-jekyll">Tufte theme for {{site.subtitle}} </a> in <a href="//jekyllrb.com">Jekyll</a>.</span> 
+<span>&copy; {{ site.time | date: '%Y' }} &nbsp;{{site.author}} - made with Jekyll and the Tufte theme.</span></br>
 </div>  
 </footer>

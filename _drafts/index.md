@@ -1,7 +1,7 @@
 ---
 layout: full-width
 title: blog
-# Note that this index page uses a full-width layout!
+order: 4
 ---
 
   <h1 class="content-listing-header sans">Articles</h1>
