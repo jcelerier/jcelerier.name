@@ -43,6 +43,7 @@ Slow software has a tendency to make my hands shake -- I prefer (Lua)LaTeX to we
 - The Baltazars create beautiful mist-based art: [baltazars.org](http://www.baltazars.org) - we've worked together on ossia for almost six years now!
 - Akané has done a lot of graphics work on ossia and has a super nice portfolio: [aklevy.github.io](https://aklevy.github.io)
 - Lots of fun were had with Bazire during university, especially during those sweet D&D sessions: [github.com/Hartorn](https://github.com/Hartorn)
+- Nicolas contributed a lot to ossia and plays many fun songs at the brass: [github.com/nvuaille](https://github.com/nvuaille)
 - Antoine is a super good intermedia artist and developer: [antoine.villeret.free.fr](http://antoine.villeret.free.fr)
 - Clément Grégoire is a C++ expert doing a lot of fun things with his company, siliceum: [lectem.github.io](https://lectem.github.io) / [siliceum.com](https://www.siliceum.com)
 - PM has super strong development and tech artist skills which he is using on nice video games: [linkedin.com/in/pmplans](https://www.linkedin.com/in/pmplans/)
@@ -55,6 +56,7 @@ Slow software has a tendency to make my hands shake -- I prefer (Lua)LaTeX to we
 You may have seen me around these places: 
 - [Twitter](https://twitter.com/jcelerie)
 - [Github](https://github.com/jcelerier)
+- [Instagram](https://instagram.com/jcelerie)
 - [LinkedIn](https://www.linkedin.com/in/jean-micha%C3%ABl-celerier-74991283)
 - [StackOverflow](https://stackoverflow.com/users/1495627/jean-micha%c3%abl-celerier)
 - [Reddit](https://www.reddit.com/u/jcelerier)
