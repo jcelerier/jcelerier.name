@@ -5,6 +5,11 @@ order: 3
 ---
 
 ## About ossia
+### [Audio Programmer Meetup, July 2020](https://theaudioprogrammer.com/meetup/)
+<div class="videoWrapper">
+    <iframe src="https://www.youtube.com/embed/P_qT2a_2jlo?t=1350" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+</div>
+ 
 ### [LAC 2019](https://lac.linuxaudio.org/2019)
 <div class="videoWrapper">
 <video controls>

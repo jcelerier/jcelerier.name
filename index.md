@@ -1,11 +1,11 @@
 ---
 layout: full-width
-title: About me
+title: Jean-Michaël Celerier
 order: 1
 ---
 
 ![myself](../assets/img/self.jpg){: style="float: left;margin:10px" width="400"} 
-I am a freelance researcher, interested in  art, code, computer music and interactive show control.
+Hello, this is Jean-Michaël. I am a freelance researcher, interested in art, code, computer music and interactive show control.
 I spend my free time on the [ossia](https://ossia.io) software ecosystem for intermedia creation. I also take part to the [intermedia.tools](https://intermedia.tools) initiative.
 
 I did my engineering curriculum and my doctorate, with an inclination towards computer science and multimedia technologies, 
@@ -20,7 +20,7 @@ I play guitar and dabble in music in general, love pen & paper RPGs and board ga
 I've worked, in no particular order: 
  - On interactive installations at [Blue Yeti](http://www.blueyeti.fr/home/) who employed me during my thesis. Check out the [Carrousel Musical](https://www.youtube.com/embed/AXeYH8W43qE)! 
   Fun fact: at 0:53 you can see my desktop computer. Producing useful code on it when the merry-go-round was spinning all day long was an interesting challenge.
- - On [Qt](https://qt.io), [Kuesa](https://www.kdab.com/kuesa), Qt3D and various embedded devices at [KDAB](https://kdab.com), the company for which I currently work.
+ - On [Qt](https://qt.io), [Kuesa](https://www.kdab.com/kuesa), Qt3D and various embedded devices at [KDAB](https://kdab.com).
  - On various projects for the [SCRIME](https://scrime.u-bordeaux.fr/) and the [Université de Bordeaux](https://www.u-bordeaux.fr) - in particular an [editor](https://github.com/scrime-u-bordeaux/segment-editor) for [SEGMent²](https://scrime.u-bordeaux.fr/Recherche/Projets3/SEGMent2-Study-and-Education-Game-Maker) as well as various implementations of improvisation algorithms and a website [to help COVID-19 research](https://touxpourlascience.labri.fr).
  - On instruments for teaching music to young children at [Rock & Chansons](https://www.lesboiteselectriques.com): Les Boites Électriques.
 
