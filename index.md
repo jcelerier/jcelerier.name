@@ -61,4 +61,7 @@ You may have seen me around these places:
 - [StackOverflow](https://stackoverflow.com/users/1495627/jean-micha%c3%abl-celerier)
 - [Reddit](https://www.reddit.com/u/jcelerier)
 - [Hacker News](https://news.ycombinator.com/threads?id=jcelerier)
+- [Blogger](https://pense-e-s.blogspot.com)
+- [Soundcloud (old!)](https://soundcloud.com/lordvicomte)
+- [Myspace (old!)](https://myspace.com/doomsevilband)
 - IRC: jcelerier, often on freenode & OFTC
