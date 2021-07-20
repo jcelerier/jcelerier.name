@@ -98,6 +98,7 @@ Hopefully you don't forget all the incantations's updates when you decide that t
 
 As such, one can see that:
 - There is no current generic way for writing an audio processor in PureData, and have it work in, say, Audacity, Ardour or LMMS as a VST plug-in, expose it through the network... Writing a PureData external ties you to PureData, and so does writing a G'MIC filter.
+It's the well-known ["quadratic glue"](https://www.oreilly.com/radar/thinking-about-glue/) problem: there are N algorithms and M "host systems", thus NxM glue code to write. 
 
 - All the approaches are riddled with unsafety, since the run-time environments force the inputs & outputs to the algorithm to be declared in a dynamic way ; thus, if you make an error in your calls, you rely on the runtime system you are using to notice this error and notify you (e.g; if you are lucky you'll get an error message on stdout ; but most likely a crash).
 
@@ -105,7 +106,7 @@ As such, one can see that:
 
 Of course, the above list is not an indictment on the code quality of those various projects: they simply all do as well as they can considering the limitations of the language.
 
-We will show how reflection allows to improve on that.
+We will show how reflection allows to improve on that, and in particular get down to N+M pieces of code to write instead of NxM.
 
 ### Problem statement
 Basically: there's a ton of environments which define ad-hoc protocols or object systems. Can we find a way to make a C++ definition which:
@@ -220,11 +221,12 @@ struct bind_to_lib {
   void register_parameters(noise& algo)
   {
     struct {
+        bind_to_lib& self;
         void operator()(float& f) const noexcept {
-          lib_add_float(r, "???", &f, ???, ???); 
+          lib_add_float(self.handle, "???", &f, ???, ???); 
         }
         void operator()(int& i) const noexcept {
-          lib_add_int(r, "???", &i, ???, ???); 
+          lib_add_int(self.handle, "???", &i, ???, ???); 
         }
         void operator()(auto&&) const noexcept {
            // unsupported 
@@ -238,7 +240,6 @@ struct bind_to_lib {
 This gets us 90% there: if our C API was just `lib_add_float(lib_type_t, float*);` that blog stop would stop right there ! 
 
 But, as it stands, our API also expects some additional metadata: a pretty name to show to the user, mins and maxs...
-
 
 ### Second transformation: ad-hoc types for parameters
 
@@ -300,36 +301,99 @@ struct alpha {
 } alpha;
 ```
 
-Now, if we were in, say, C#, what we'd most likely write instead would be: 
+#### How user-defined attributes would help
+Now, if we were in, say, C#, what we'd most likely write instead would instead just be: 
+```C#
 [Name("α")]
 [Range(min = -1.f, max = 1.f)]
 float alpha;
+```
 
-And we now have to go back and work on the binding function implementation: the main issue is that where we were using the actual type of the values 
+Simpler, isn't it ?
+How neat would it be if we had [the same thing](https://manu343726.github.io/2019-07-14-reflections-on-user-defined-attributes/) in C++ ! There is some work towards that in Clang and the [lock3/meta metaclasses clang fork](https://github.com/lock3/meta/issues/215).
+
+Although in practice some methods may be needed: for instance, multiple APIs require the user to provide a method which will from an input value, render a string to show to the user.
+
+### Updating our binding code
+We now have to go back and work on the binding function implementation: the main issue is that where we were using the actual type of the values, `boost::pfr::for_each` will give us references to anonymous types (or, even if not anonymous, types that we shouldn't have knowledge of in our binding code).
+
+In our case, we assume (as part of our ontology), that *parameters* have a *value*. This is a compile-time protocol.
+
+Thankfully, a C++20 feature, concepts, makes encoding compile-time protocols in code fairly easy.
+Consider a member of our earlier visitor:
 
 ```C++
-struct bind_to_lib {
-  lib_type_t handle;
+void operator()(???& f) const noexcept
+{
+  lib_add_float(r, ???, ???, ???, ???); 
+}
+```
 
-  void register_parameters(noise& algo)
-  {
-    struct {
-        void operator()(float_parameter auto& f) const noexcept {
-          lib_add_float(r, "???", &f, ???, ???); 
-        }
-        void operator()(int& i) const noexcept {
-          lib_add_int(r, "???", &i, ???, ???); 
-        }
-        void operator()(auto&&) const noexcept {
-           // unsupported 
-        }
-    } visitor;
-    boost::pfr::for_each(algo, visitor);
-  }
+We can for instance fill it that way : 
+```C++
+// we are writing the binding code, here everything is allowed !
+#include <concepts>
+...
+void operator()(auto& f) const noexcept
+  requires std::same_as<decltype(f.value), float>
+{
+  lib_add_float(r, f.name(), &f.value, f.min(), f.max());
+}
+```
+
+And that would work with our current `noise` implementation.
+But what if the program author forgets to implement the `name()` method ? Mainly a not-so-terrible compile error:
+
+```
+<source>:30:23: error: no member named 'name' in 'noise::(anonymous struct at <source>:18:5)'
+  lib_add_float(r, f.name(), &f.value, f.min(), f.max());
+                    ~ ^
+<source>:48:12: note: in instantiation of function template specialization '(anonymous struct)::operator()<noise::(anonymous struct at <source>:18:5)>' requested here
+    visitor(n.alpha);
+           ^
+```
+
+If our API absolutely requires a `name()`, and a `value`, concepts are very helpful: 
+
+```C++
+template<typename T, typename Value_T>
+concept parameter = requires (T t) {
+  { t.value } -> std::same_as<Value_T>;
+  { t.min() } -> std::same_as<Value_T>;
+  { t.max() } -> std::same_as<Value_T>;
+  { t.name() } -> std::same_as<const char*>;
 };
 ```
-One *could* of course define 
+Our code becomes:
 
+```C++
+void operator()(parameter<float> auto& f) const noexcept
+{
+  lib_add_float(r, f.name(), &f.value, f.min(), f.max());
+}
+```
+
+Forgetting to implement `name()` now results in:
+```
+<source>:44:5: error: no matching function for call to object of type 'struct (anonymous struct at <source>:34:5)'
+    visitor(n.alpha);
+    ^~~~~~~
+<source>:35:14: note: candidate template ignored: constraints not satisfied [with f:auto = noise::(anonymous struct at <source>:18:5)]
+        void operator()(parameter<float> auto& f) const noexcept
+             ^
+<source>:35:25: note: because 'parameter<noise::(anonymous struct at <source>:18:5), float>' evaluated to false
+        void operator()(parameter<float> auto& f) const noexcept
+                        ^
+<source>:29:7: note: because 't.min()' would be invalid: no member named 'min' in 'noise::(anonymous struct at <source>:18:5)'
+  { t.min() } -> std::same_as<Value_T>;
+      ^
+```
+
+whether that constitutes an improvement in readability of errors in our specific case is left as an exercise to the reader.
+
+But, what if our algorithm *doesn't* actually need bounds ? We'd still want it to work in a bounded host system, right ? The host system would just choose arbitrary bounds that make sense for e.g. an input widget.
+
+In this case, we'd get a combinatorial explosion of concepts: we'd need an overload for a parameter with a name and no range, an overload for a parameter with a range and no name, etc etc.  
 
 # Defining ontologies
 
