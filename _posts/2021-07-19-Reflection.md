@@ -35,11 +35,14 @@ auto noise(
 You are proud of your neat results, prepare conference papers, etc... but ! Now is the time to implement your noise algorithm in a set of software in order to have it used widely and become the next industry standard in procedural noise generation.
 
 If you are used to working in C#, Java, Python, or any other language more recent than 1983, the solution may at this point seem trivial. Sadly, in C++, this has been unordinately hard to implement until now, especially when one aims for as close as possible to a zero-runtime cost-abstraction. 
-In particular, this blogpost is a plea to C++ implementors, to show how much better and easier true reflection would make one's life, and what kind of abstracting power it holds over existing techniques in C++.
+
+On the other hand, if you implement your algorithm in C#, Java, or Python, having it useable from any other runtime environment is a massive challenge, as two VMs, often with their own garbage collection mechanism, etc... now have to cooperate. Thus, for something really universal, a language than can compile to native binaries, with minimal dependencies, is the easiest way to get a large reach. In particular, most media host environments are written in a native language and expect plug-ins conforming to operating system DLLs. There aren't that many suitable candidates with a high enough capacity for abstraction: C++, Rust, D without GC. Since most of the media host provide C or C++ APIs, C++ is the natural, minimal-friction choice. 
+
+This blogpost is a plea to C++ implementors, to show how much better and easier true reflection as available in other languages, in particular with attribute reflection and user-defined attributes, would make one's life, and what kind of abstracting power "reflective programming" holds over existing generic programming techniques in C++: macro-based metaprogramming, template-based metaprogramming (with e.g. CRTP being commonly used for that).
 
 ### The problem domain
 
-Of course, the software should be able to display UI widgets adapted for the control of `alpha` and `beta`, whose bounds you have so painstakingly and thoroughly defined. Likewise, the UI widgets should adapt to the type of the parameter ; a spinbox may make more sense for `beta`, and a slider, knob, or any kind of continuous control for `alpha`.
+The software in which we want to embed our algorithm should be able to display UI widgets adapted for the control of `alpha` and `beta`, whose bounds you have so painstakingly and thoroughly defined. Likewise, the UI widgets should adapt to the type of the parameter ; a spinbox may make more sense for `beta`, and a slider, knob, or any kind of continuous control for `alpha`.
 
 Maybe you'd also like to serve your algorithm over the network, or through an IPC protocol like D-Bus. Again, you'd have to specify the data format being used.
 
@@ -51,12 +54,11 @@ If for instance you were using the OSC protocol, to make your algorithm controll
 /noise/beta ,i 17
 ```
 
-Maybe you'd also like to serialize your algorithm's inputs, in order to have a preset system.
-In JSON ? YAML ? Binary ? Network-byte-order binary ? So many possibilities !
+Maybe you'd also like to serialize your algorithm's inputs, in order to have a preset system, or just to exchange with another runtime system expecting a serialized version of your data. In JSON ? YAML ? Binary ? Network-byte-order binary ? GLSL `std140` ? So many possibilities !
 
 ### Hell on earth 
 
-For *every* protocol, host environment, plug-in system, etc etc. that you want to provide your algorithm to, you will have to write some amount of binding code.
+For *every* protocol, host environment, plug-in system, etc etc. that you want to provide your algorithm to, you will have to write some amount of binding code, also often called *glue code*.
 
 How does that binding code may look, you ask ? 
 
@@ -92,15 +94,15 @@ gPropertySuite->propSetDouble(paramProps, kOfxParamPropDisplayMax, 0, 10.0);
 
 Hopefully you don't forget all the incantations's updates when you decide that this control would indeed be better as an integer !
 * Things like [iPlug](https://github.com/iPlug2/iPlug2/blob/master/Examples/IPlugEffect/IPlugEffect.cpp#L8) are a bit more sane, but we still have to triplicate our parameter creation / access: in an enum in the hpp, in the constructor and finally in `ProcessBlock` where we get the actual value. This is still a whole lot of work versus **JUST ACCESSING A FLOAT IN A STRUCT !!11!1!!**
-* A Krita [plug-in for noise generation](https://github.com/KDE/krita/blob/master/plugins/generators/simplexnoise/simplexnoisegenerator.cpp#L62) - here Qt's QObject run-time property system is used to declare and use the algorithm controls. That also means inheriting from Qt's QObject, which has a non-negligible memory cost.  
+* A Krita [plug-in for noise generation](https://github.com/KDE/krita/blob/master/plugins/generators/simplexnoise/simplexnoisegenerator.cpp#L62) -- here Qt's QObject run-time property system is used to declare and use the algorithm controls. That also means inheriting from Qt's QObject, which has a non-negligible memory cost.  
 * Wanna receive messages through OSC ? [Make the exceptions rain !](https://github.com/RossBencina/oscpack/blob/master/examples/SimpleReceive.cpp).
 * Wanna expose your algorithm to another language, such as Python ? [Get ready for some py::<>'y boilerplate](https://pybind11.readthedocs.io/en/stable/advanced/classes.html). 
 
 As such, one can see that:
-- There is no current generic way for writing an audio processor in PureData, and have it work in, say, Audacity, Ardour or LMMS as a VST plug-in, expose it through the network... Writing a PureData external ties you to PureData, and so does writing a G'MIC filter.
+- There is no current generic way for writing an audio processor in PureData, and have it work in, say, Audacity, Ardour or LMMS as a VST plug-in, expose it through the network... Writing a PureData external ties you to PureData, and so does writing a Krita plug-in.
 It's the well-known ["quadratic glue"](https://www.oreilly.com/radar/thinking-about-glue/) problem: there are N algorithms and M "host systems", thus NxM glue code to write. 
 
-- All the approaches are riddled with unsafety, since the run-time environments force the inputs & outputs to the algorithm to be declared in a dynamic way ; thus, if you make an error in your calls, you rely on the runtime system you are using to notice this error and notify you (e.g; if you are lucky you'll get an error message on stdout ; but most likely a crash).
+- All the approaches are riddled with unsafety, since the run-time environments force the inputs & outputs to the algorithm to be declared in a dynamic way ; thus, if you make an error in your call sequence, you rely on the runtime system you are using to notice this error and notify you (e.g; if you are lucky you'll get an error message on stdout ; but most likely a crash).
 
 - All the approaches require duplicating the actual parameters of your algorithm, e;g. our `alpha`, `beta`, once as actual C++ variables, once as facades to the runtime object system you are interacting with. 
 
@@ -111,9 +113,9 @@ We will show how reflection allows to improve on that, and in particular get dow
 ### Problem statement
 Basically: there's a ton of environments which define ad-hoc protocols or object systems. Can we find a way to make a C++ definition which:
 
-- Does not depend on any pre-existing code: doesn't inherit from a class, doesn't call arbitrary run-time functions, etc. Basically, can the *definition* of the algorithm be done without having to include *anything*, even standard headers (discounting of course whatever third-party library is required for the algorithm itself).
+- Does not depend on any pre-existing code: doesn't inherit from a class, doesn't call arbitrary run-time functions, etc. The *definition* of the algorithm shall be writable without having to include *anything*, even standard headers (and discounting of course whatever third-party library is required for the algorithm itself).
 
-- Does not use anything other than structures of trivial, standard-layout types. No tuples, no templates, no magic, just `structs` containing `float`, `int` and not much more. This is because we want to be able to give the *simplest possible expression* of a problem. C++ is often sold as a language which aims to leave no room for a lower-level language. The technique in this post is about leaving no room for a simpler implementation of an algorithm, while maintaining the ability to control its inputs and outputs. Ideally, that would lead to a collection of such algorithms not depending on any framework except concept definitions for a given problem domain. Of course, once *this* work, a community could choose to define its core concepts and ontologies through a set of standard-library-like-types, e.g. `string_view`, `array` or `span`-like types.
+- Does not use anything other than structures of trivial, standard-layout types. No tuples, no templates, no magic, just `structs` containing `float`, `int` and not much more. This is because we want to be able to give the *simplest possible expression* of a problem. C++ is often sold as a language which aims to leave no room for a lower-level language. The technique in this post is about leaving no room for a simpler implementation of an algorithm, while maintaining the ability to control its inputs and outputs. Ideally, that would lead to a collection of such algorithms not depending on any framework, except optional concept definitions for a given problem domain. Of course, once *this* works, a specific community could choose to define its core concepts and ontologies through a set of standard-library-like-types, e.g. `string_view`, `array` or `span`-like types.
 
 - Does not duplicate parameter creation: defining a parameter should be as simple as adding a member to a structure. The parameter's value should not be of a complicated, custom library type; just using `int` or `float` should work. At no point one should have to write the name of a variable twice, e.g. with a macro system such as Boost.Fusion with `BOOST_FUSION_ADAPT_STRUCT`, or with pybind-like templates: remember, we do not want our code to have any dependency !
 
@@ -228,9 +230,6 @@ struct bind_to_lib {
         void operator()(int& i) const noexcept {
           lib_add_int(self.handle, "???", &i, ???, ???); 
         }
-        void operator()(auto&&) const noexcept {
-           // unsupported 
-        }
     } visitor;
     boost::pfr::for_each(algo, visitor);
   }
@@ -256,7 +255,7 @@ struct {
 } alpha;
 ```
 
-And at this point, it becomes easy to add metadata, with constexpr functions !
+And at this point, it becomes easy to add metadata that will not have a per-instance cost, unlike a lot of runtime systems (for instance QObject properties used in Krita plug-ins):
 
 ```c++
 struct {
@@ -290,7 +289,7 @@ struct noise
 };
 ```
 
-Sadly, there isn't a lot of wiggle room to improve. It is not possible to have static functions in anonymous structs ; if one is willing to duplicate the name of the struct, it's possible to get things down to:
+There isn't a lot of wiggle room to improve. It is not possible to have static member variables in anonymous structs ; if one is willing to duplicate the name of the struct, it's possible to get things down to:
 
 ```C++
 struct alpha {
@@ -374,6 +373,7 @@ void operator()(parameter<float> auto& f) const noexcept
 ```
 
 Forgetting to implement `name()` now results in:
+
 ```
 <source>:44:5: error: no matching function for call to object of type 'struct (anonymous struct at <source>:34:5)'
     visitor(n.alpha);
@@ -394,6 +394,42 @@ whether that constitutes an improvement in readability of errors in our specific
 But, what if our algorithm *doesn't* actually need bounds ? We'd still want it to work in a bounded host system, right ? The host system would just choose arbitrary bounds that make sense for e.g. an input widget.
 
 In this case, we'd get a combinatorial explosion of concepts: we'd need an overload for a parameter with a name and no range, an overload for a parameter with a range and no name, etc etc.  
+
+### Handling optionality
+As an algorithm author, you cannot specify every possible metadata known to man. We want our algorithm to be future-proof: even if refinements can be added, we want the code we write today to still be able to integrate into tomorrow's host.
+
+Thankfully, the age-old notion of condition can help here ; in particular compile-time conditions depending on the existence of a member.
+
+C++20 makes that trivial: 
+
+```
+void operator()(auto& f) const noexcept
+  // We still need our "requires here", or a simpler concept
+  // in order to have the right overload be selected.
+  requires std::same_as<decltype(f.value), float>
+{
+  const char* name = "Parameter";
+  float min = 0.f, max = 1.f;
+  if constexpr(requires { name = f.name(); })
+    name = f.name();
+  if constexpr(requires { min = f.min(); })
+    min = f.min();
+  if constexpr(requires { max = f.max(); })
+    max = f.max();
+
+  lib_add_float(r, name, &f.value, min, max);
+}
+```
+
+This way, the algorithm has maximal flexibility: it can provide the bare minimal metadata for a proof-of-concept, or give as much information as possible.
+
+Likewise, hosts, can try to use as much information from the plug-in as possible.
+
+For instance, some plug-ins may have a more efficient, vector-based, implementation for their process.
+
+TODO
+
+
 
 # Defining ontologies
 
