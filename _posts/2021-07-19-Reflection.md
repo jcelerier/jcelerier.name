@@ -170,7 +170,7 @@ void lib_add_float(lib_type_t handle, const char* name, float* ptr, float min, f
 void lib_add_int(lib_type_t handle, const char* name, int *ptr, int min, int max);
 
 // Vararg is a list of lib_argument_types members, defining the arguments of the function.
-void lib_add_process_method(lib_type_t handle, const char* name, void* ptr, ...); // mhhh VARARGS
+void lib_add_method(lib_type_t handle, const char* name, void* ptr, ...); // mhhh VARARGS
 ```
 
 To register our process to thar imaginary API, one may write the following, which would then be compiled as a .dll / .so / .dylib and be loaded by our runtime system through `dlopen` and friends:
@@ -185,7 +185,7 @@ lib_type_t main()
   auto r = lib_define_type("noise");
   lib_add_float(r, "alpha", &algo.alpha, 0., 1.); // oops
   lib_add_int(r, "beta", &algo.beta, 11, 247);
-  lib_add_process_method(r, "process", reinterpret_cast<void*>(&process), kFloat, kFloat);
+  lib_add_method(r, "process", reinterpret_cast<void*>(&process), kFloat, kFloat);
   return r;
 }
 ```
@@ -423,17 +423,55 @@ void operator()(auto& f) const noexcept
 
 This way, the algorithm has maximal flexibility: it can provide the bare minimal metadata for a proof-of-concept, or give as much information as possible.
 
-Likewise, hosts, can try to use as much information from the plug-in as possible.
+### Calling our code
 
-For instance, some plug-ins may have a more efficient, vector-based, implementation for their process.
+There's not much difference with the previous technique when we want to call our process (`operator()`) function.
 
-TODO
+What we cannot do without reflection & code generation (metaclasses) is an entirely generic transformation from one of our algorithm's processing method, which, depending on the problem domain, could have any number of inputs / outputs of various types, to arbitrary run-time data. For instance, audio processors generally have inputs and outputs in the form of an array of channels of float / double values, plus the amount of data to be processed: 
 
+```C++
+void canonical_audio_processor(float** inputs, float** outputs, int frames_to_process);
+```
 
+While image processors would instead look like:
+```C++
+void canonical_image_processor(unsigned char* data, int width, int height);
+```
+There's no practical way to enumerate all the possible sets of arguments.
 
-# Defining ontologies
+Thus, the author of the binding code has the responsibility of adapting the expected ontology for algorithms to the API we are binding to.
 
-Concepts
+```C++
+struct bind_to_lib {
+  lib_type_t handle;
+  void register_process(noise& algo)
+  {
+    auto process = [] (float* out, const float* in) { *out = algo(*in); };
+    lib_add_method(handle, "process", reinterpret_cast<void*>(&process), kFloat, kFloat);
+  }
+}
+```
+
+Nothing prevents multiple cases to be handled: for instance, some plug-ins may have a more efficient, array-based, implementation for their process, which hosts whose main mode of operation is through arrays instead of single values can leverage if available, and make a fallback if not:
+
+```C++
+void register_process(noise& algo)
+{
+  if constexpr(std::invocable<noise, float, float>)
+  {
+    auto process = [] (float* out, const float* in) { *out = algo(*in); };
+    lib_add_method(handle, "process", reinterpret_cast<void*>(&process), kFloat, kFloat);
+  }
+  else if constexpr(std::invocable<noise, const float*, float*, std::size_t>)
+  {
+    auto process = [] (float* out, const float* in, std::size_t n) {
+      for(std::size_t i = 0U; i < n; i++) 
+        out[i] = algo(in[i]); 
+    };
+    lib_add_method(handle, "process", reinterpret_cast<void*>(&process), kFloat, kFloat);
+  }
+}
+```
 
 # Benefits
 
