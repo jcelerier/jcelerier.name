@@ -5,11 +5,19 @@ order: 3
 ---
 
 ## About ossia
+### [IFC 2020, December 2020](https://ifc20.sciencesconf.org/)
+<div class="videoWrapper">
+    <iframe src="https://www.youtube.com/embed/Kvt4gHaWuOU" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+### [LAC 2020, November 2020](https://lac2020.sciencesconf.org/)
+Upcoming !
+
 ### [Audio Programmer Meetup, July 2020](https://theaudioprogrammer.com/meetup/)
 <div class="videoWrapper">
     <iframe src="https://www.youtube.com/embed/P_qT2a_2jlo?t=1350" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 </div>
- 
+
 ### [LAC 2019](https://lac.linuxaudio.org/2019)
 <div class="videoWrapper">
 <video controls>
@@ -30,7 +38,7 @@ order: 3
     <iframe src="https://www.youtube.com/embed/_PQ1hM2BtkI" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-### [LAC 2017](https://lac.linuxaudio.org/2017) 
+### [LAC 2017](https://lac.linuxaudio.org/2017)
 <div class="videoWrapper">
     <iframe src="https://www.youtube.com/embed/s0BsyDjmXrk" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 </div>
@@ -52,7 +60,7 @@ order: 3
     <iframe src="https://www.youtube.com/embed/qouSxAH2pCg" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-### [FOSDEM 2016](https://archive.fosdem.org/2016/schedule/event/i_score/) 
+### [FOSDEM 2016](https://archive.fosdem.org/2016/schedule/event/i_score/)
 <div class="videoWrapper">
     <iframe src="https://www.youtube.com/embed/x3HYwu-S4OI" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 </div>

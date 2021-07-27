@@ -4,11 +4,11 @@ title: Jean-Michaël Celerier
 order: 1
 ---
 
-![myself](../assets/img/self.jpg){: style="float: left;margin:10px" width="400"} 
+![myself](../assets/img/self.jpg){: style="float: left;margin:10px" width="400"}
 Hello, this is Jean-Michaël. I am a freelance researcher, interested in art, code, computer music and interactive show control.
 I spend my free time on the [ossia](https://ossia.io) software ecosystem for intermedia creation. I also take part to the [intermedia.tools](https://intermedia.tools) initiative.
 
-I did my engineering curriculum and my doctorate, with an inclination towards computer science and multimedia technologies, 
+I did my engineering curriculum and my doctorate, with an inclination towards computer science and multimedia technologies,
 at the [ENSEIRB-MATMECA](https://www.enseirb-matmeca.fr) and the [Université de Bordeaux](https://www.u-bordeaux.fr).
 
 You can [check out my thesis](https://tel.archives-ouvertes.fr/tel-01947309) and hopefully tell me if you see any improvement that could be made :-)
@@ -17,28 +17,28 @@ I play guitar and dabble in music in general, love pen & paper RPGs and board ga
 
 <br/>
 # Work
-I've worked, in no particular order: 
- - On interactive installations at [Blue Yeti](http://www.blueyeti.fr/home/) who employed me during my thesis. Check out the [Carrousel Musical](https://www.youtube.com/embed/AXeYH8W43qE)! 
+I've worked, in no particular order:
+ - On interactive installations at [Blue Yeti](http://www.blueyeti.fr/home/) who employed me during my thesis. Check out the [Carrousel Musical](https://www.youtube.com/embed/AXeYH8W43qE)!
   Fun fact: at 0:53 you can see my desktop computer. Producing useful code on it when the merry-go-round was spinning all day long was an interesting challenge.
  - On [Qt](https://qt.io), [Kuesa](https://www.kdab.com/kuesa), Qt3D and various embedded devices at [KDAB](https://kdab.com).
  - On various projects for the [SCRIME](https://scrime.u-bordeaux.fr/) and the [Université de Bordeaux](https://www.u-bordeaux.fr) - in particular an [editor](https://github.com/scrime-u-bordeaux/segment-editor) for [SEGMent²](https://scrime.u-bordeaux.fr/Recherche/Projets3/SEGMent2-Study-and-Education-Game-Maker) as well as various implementations of improvisation algorithms and a website [to help COVID-19 research](https://touxpourlascience.labri.fr).
  - On instruments for teaching music to young children at [Rock & Chansons](https://www.lesboiteselectriques.com): Les Boites Électriques.
 
-My main tools are recent dialects of C++, Qt, Boost, and CMake. 
+My main tools are recent dialects of C++, Qt, Boost, and CMake.
 I mostly do my work under Linux systems and am a strong proponent of free, libre and open-source software.
 I license my own work under [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html) as far as a I can.
 
 I have experience with a fair amount of programming language paradigms and favor the type-level computations that C++ enables most; I ran a short-lived user group in Bordeaux in 2019.
 I sometimes use QML for non-desktop user interfaces and have a long love & hate relationship with OCaml.
 
-I am interested in all the languages and tools geared towards creative coding: 
+I am interested in all the languages and tools geared towards creative coding:
 OpenFrameworks, Faust, PureData, OpenMusic, Processing, Cinder, Max/MSP, ChucK...
 
 Slow software has a tendency to make my hands shake -- I prefer (Lua)LaTeX to web technologies.
 
 <br/>
 # Web buddies
-- Check out Julien's awesome work and music: [cubeslam.net](https://cubeslam.net)
+- Check out [Julien](https://github.com/voidtuxic)'s awesome work and music: [voidwork.space](https://voidwork.space)
 - Jaime Arias is a great researcher in formal models - we've collaborated a fair bit: [jaime-arias.fr](https://www.jaime-arias.fr)
 - The Baltazars create beautiful mist-based art: [baltazars.org](http://www.baltazars.org) - we've worked together on ossia for almost six years now!
 - Akané has done a lot of graphics work on ossia and has a super nice portfolio: [aklevy.github.io](https://aklevy.github.io)
@@ -53,7 +53,7 @@ Slow software has a tendency to make my hands shake -- I prefer (Lua)LaTeX to we
 
 <br/>
 # Internets
-You may have seen me around these places: 
+You may have seen me around these places:
 - [Twitter](https://twitter.com/jcelerie)
 - [Github](https://github.com/jcelerier)
 - [Instagram](https://instagram.com/jcelerie)
