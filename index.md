@@ -23,6 +23,7 @@ I've worked, in no particular order:
  - On [Qt](https://qt.io), [Kuesa](https://www.kdab.com/kuesa), Qt3D and various embedded devices at [KDAB](https://kdab.com).
  - On various projects for the [SCRIME](https://scrime.u-bordeaux.fr/) and the [Université de Bordeaux](https://www.u-bordeaux.fr) - in particular an [editor](https://github.com/scrime-u-bordeaux/segment-editor) for [SEGMent²](https://scrime.u-bordeaux.fr/Recherche/Projets3/SEGMent2-Study-and-Education-Game-Maker) as well as various implementations of improvisation algorithms and a website [to help COVID-19 research](https://touxpourlascience.labri.fr).
  - On instruments for teaching music to young children at [Rock & Chansons](https://www.lesboiteselectriques.com): Les Boites Électriques.
+ - I've given various classes about interactive music, programming, and [generative graphical design](https://interactive-design.jcelerier.name/b3) to students from ENSEIRB-MATMECA, Université de Bordeaux and YNOV.
 
 My main tools are recent dialects of C++, Qt, Boost, and CMake.
 I mostly do my work under Linux systems and am a strong proponent of free, libre and open-source software.
@@ -62,6 +63,10 @@ You may have seen me around these places:
 - [Reddit](https://www.reddit.com/u/jcelerier)
 - [Hacker News](https://news.ycombinator.com/threads?id=jcelerier)
 - [Blogger](https://pense-e-s.blogspot.com)
+- [Youtube](https://www.youtube.com/channel/UCm6OmUDgSDx8_BumsBwhLsQ/videos)
+- [libre.fm](https://libre.fm/user/jcelerier/stats)
+- [Twitch](https://www.twitch.tv/jcelerier)
+- [Vimeo](https://vimeo.com/user68290736)
 - [Soundcloud (old!)](https://soundcloud.com/lordvicomte)
 - [Myspace (old!)](https://myspace.com/doomsevilband)
 - IRC: jcelerier, often on [libera](https://libera.chat) & OFTC

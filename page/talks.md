@@ -4,6 +4,16 @@ title: Talks
 order: 3
 ---
 
+## About C++
+### [ADC 2021, November 2021](https://adc21.sched.com/event/poiX)
+
+Upcoming ! 
+
+### [ACCU 2019](https://conference.accu.org/)
+<div class="videoWrapper">
+    <iframe src="https://www.youtube.com/embed/2_cRaDxBe-A" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 ## About ossia
 ### [CCC rc3, December 2021](https://media.ccc.de/v/rc3-2021-chaosstudiohamburg-301-ossia-score-live-jam-and-talk#t=2012)
 <div class="videoWrapper">
@@ -13,10 +23,6 @@ order: 3
 ### [RustFest - Rust for the Arts, November 2021](https://rustfest.global/session/47-creating-interactive-digital-art-with-ossia-score-and-libossia/)
 
 Upcoming !
-
-### [ADC 2021, November 2021](https://adc21.sched.com/event/poiX)
-
-Upcoming ! 
 
 ### [IFC 2020, December 2020](https://ifc20.sciencesconf.org/)
 <div class="videoWrapper">
@@ -78,9 +84,4 @@ Upcoming !
 ### [FOSDEM 2016](https://archive.fosdem.org/2016/schedule/event/i_score/)
 <div class="videoWrapper">
     <iframe src="https://www.youtube.com/embed/x3HYwu-S4OI" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-</div>
-## About C++
-### [ACCU 2019](https://conference.accu.org/)
-<div class="videoWrapper">
-    <iframe src="https://www.youtube.com/embed/2_cRaDxBe-A" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 </div>
