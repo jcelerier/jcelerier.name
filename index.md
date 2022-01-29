@@ -64,4 +64,4 @@ You may have seen me around these places:
 - [Blogger](https://pense-e-s.blogspot.com)
 - [Soundcloud (old!)](https://soundcloud.com/lordvicomte)
 - [Myspace (old!)](https://myspace.com/doomsevilband)
-- IRC: jcelerier, often on freenode & OFTC
+- IRC: jcelerier, often on [libera](https://libera.chat) & OFTC
