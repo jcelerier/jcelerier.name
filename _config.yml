@@ -1,5 +1,7 @@
 baseurl:
+url: https://jcelerier.name
 title: Personal website of Jean-Michaël Celerier
+email: jeanmichael.celerier@gmail.com
 subtitle: post-*
 author: Jean-Michaël Celerier
 simple_search: https://google.com/search
@@ -10,6 +12,7 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 permalink: /articles/:short_year/:title
 timezone: Europe/Paris
 excerpt_separator: <!--more-->  # you can specify your own separator, of course.
+include: ["robots.txt", "favicon.ico"]
 exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'UploadToGithub.Rakefile', 'README.md']
 post:
   template: _post.txt

@@ -1,6 +1,6 @@
 ## Liquid tag 'maincolumn-figure' used to add image data that fits within the
 ## main column area of the layout
-## Usage {% maincolumn 'path/to/image' 'This is the caption' %}
+## Usage {%- maincolumn 'path/to/image' 'This is the caption' -%}
 #
 module Jekyll
   class RenderMainColumnTag < Liquid::Tag

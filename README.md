@@ -57,17 +57,17 @@ The custom Liquid tags are designed to simplify writing content and displaying i
 
 * Liquid tags work best when you use double quotes to surround the tag parameters, as you'll see in all the examples below.
 
-* You can use single quotes and apostrophes in the text inside tag parameters. Liquid will automatically process them correctly. For example: `{% newthought "I'm so smart!" %}` will render as `I'm so smart!`
+* You can use single quotes and apostrophes in the text inside tag parameters. Liquid will automatically process them correctly. For example: `{%- newthought "I'm so smart!" -%}` will render as `I'm so smart!`
 
-* To use a double quote in the text inside a tag parameter, escape the double quote by placing a backslash directly in front of it, for example: `{% newthought "\"I'm so smart!\", she thought." %}` will render as `"I'm so smart!", she thought.`
+* To use a double quote in the text inside a tag parameter, escape the double quote by placing a backslash directly in front of it, for example: `{%- newthought "\"I'm so smart!\", she thought." -%}` will render as `"I'm so smart!", she thought.`
 
 * You can use HTML inside of a tag parameter. (However, you cannot use Markdown inside a tag parameter) You can use either single quotes, or escaped double quotes in the HTML. For example, both of the following tags will work:
 
 ```
-{% newthought "Example website: <a href='http://example.com'>example label</a>" %}
+{%- newthought "Example website: <a href='http://example.com'>example label</a>" -%}
 ```
 ```
-{% newthought "Example website: <a href=\"http://example.com\">example label</a>" %}
+{%- newthought "Example website: <a href=\"http://example.com\">example label</a>" -%}
 ```
 
 The [demo site's Edge Cases entry](http://clayh53.github.io/tufte-jekyll/articles/15/Edge-Cases) has an example toward the bottom illustrating HTML inside of a tag parameter.
@@ -77,7 +77,7 @@ The [demo site's Edge Cases entry](http://clayh53.github.io/tufte-jekyll/article
 This tag will render its contents in small caps. Useful at the beginning of new sections:
 
 ```
-{% newthought "This will be rendered in small caps" %} blah blah
+{%- newthought "This will be rendered in small caps" -%} blah blah
 ```
 
 ### Sidenote
@@ -85,7 +85,7 @@ This tag will render its contents in small caps. Useful at the beginning of new 
 This tag inserts a *sidenote* in the content, which is like a footnote, only its in the spacious right-hand column. It is automatically numbered, starting over on each page. Just put it in the content like you would insert a footnote like so:
 
 ```
-blah lorem blah{% sidenote "sidenote-id" "This is a random sidenote" %} blah blah
+blah lorem blah{%- sidenote "sidenote-id" "This is a random sidenote" -%} blah blah
 ```
 And it will add the html spans and superscripts. On smaller screens, tapping on the number will reveal the sidenote!
 
@@ -96,7 +96,7 @@ The `full-width` page layout will not display side notes. (It's a full-width pag
 This tag is essentially the same as a sidenote, but heh, no number. Like this:
 
 ```
-lorem nobeer toasty critters{% marginnote "margin-note-id" "Random thought when drinking" %} continue train of thought
+lorem nobeer toasty critters{%- marginnote "margin-note-id" "Random thought when drinking" -%} continue train of thought
 ```
 On smaller screens, tapping on the <span>&#8853;</span> symbol will open up the margin note.
 
@@ -108,7 +108,7 @@ This tag inserts an image that spans both the main content column and the side c
 
 ```
 blah blah
-{% fullwidth "assets/img/rhino.png" "A caption for the image" %}
+{%- fullwidth "assets/img/rhino.png" "A caption for the image" -%}
 blah
 ```
 
@@ -116,7 +116,7 @@ or
 
 ```
 blah blah
-{% fullwidth "http://example.com/image.jpg" "A caption for the image" %}
+{%- fullwidth "http://example.com/image.jpg" "A caption for the image" -%}
 blah
 ```
 
@@ -130,7 +130,7 @@ This tag inserts an image that is confined to the main content column:
 
 ```
 blah blah
-{% maincolumn "assets/img/rhino.png" "This is the caption" %}
+{%- maincolumn "assets/img/rhino.png" "This is the caption" -%}
 blah
 ```
 
@@ -138,7 +138,7 @@ or
 
 ```
 blah blah
-{% maincolumn "http://example.com/image.jpg" "This is the caption" %}
+{%- maincolumn "http://example.com/image.jpg" "This is the caption" -%}
 blah
 ```
 
@@ -151,13 +151,13 @@ And just like fullwidth images, main column images need to be included on their 
 This tag inserts and image in the side column area. Note that an id needs to be specified:
 
 ```
-blah blah {% marginfigure "margin-figure-id" "assets/img/rhino.png" "This is the caption" %} blah
+blah blah {%- marginfigure "margin-figure-id" "assets/img/rhino.png" "This is the caption" -%} blah
 ```
 
 or
 
 ```
-blah blah {% marginfigure "margin-figure-id" "http://example.com/image.jpg" "This is the caption" %} blah
+blah blah {%- marginfigure "margin-figure-id" "http://example.com/image.jpg" "This is the caption" -%} blah
 ```
 
 This needs an ID parameter so that it can be clicked and opened on small screens. Again note the absence of the leading slash in the image url when using relative file paths. (This is incorrect: `/assets/img/rhino.png`)
@@ -166,7 +166,7 @@ The `full-width` page layout will not display margin figures. (It's a full-width
 
 ### Mathjax
 
-Totally used this functionality from a [gist by Jessy Cowan-Sharpe](https://gist.github.com/jessykate/834610) to make working with Mathjax expressions a little easier. Short version, wrap inline math in a tag pair thusly: ```{% m %}mathjax expression{% em %}``` and wrap bigger block level stuff with ```{% math %}mathjax expression{% endmath %}```
+Totally used this functionality from a [gist by Jessy Cowan-Sharpe](https://gist.github.com/jessykate/834610) to make working with Mathjax expressions a little easier. Short version, wrap inline math in a tag pair thusly: ```{%- m -%}mathjax expression{%- em -%}``` and wrap bigger block level stuff with ```{%- math -%}mathjax expression{%- endmath -%}```
 
 As a side note - if you do not need the math ability, navigate to the ```_data/options.yml``` file and change the mathjax to 'false' and it will not load the mathjax javascript.
 
