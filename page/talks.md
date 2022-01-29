@@ -5,13 +5,28 @@ order: 3
 ---
 
 ## About ossia
+### [CCC rc3, December 2021](https://media.ccc.de/v/rc3-2021-chaosstudiohamburg-301-ossia-score-live-jam-and-talk#t=2012)
+<div class="videoWrapper">
+   <iframe src="https://media.ccc.de/v/rc3-2021-chaosstudiohamburg-301-ossia-score-live-jam-and-talk/oembed" frameborder="0" allowfullscreen></iframe>
+</div>
+
+### [RustFest - Rust for the Arts, November 2021](https://rustfest.global/session/47-creating-interactive-digital-art-with-ossia-score-and-libossia/)
+
+Upcoming !
+
+### [ADC 2021, November 2021]()
+
+Upcoming ! 
+
 ### [IFC 2020, December 2020](https://ifc20.sciencesconf.org/)
 <div class="videoWrapper">
     <iframe src="https://www.youtube.com/embed/Kvt4gHaWuOU" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ### [LAC 2020, November 2020](https://lac2020.sciencesconf.org/)
-Upcoming !
+<div class="videoWrapper">
+<iframe title="Intermedia art with ossia score" src="https://tube.aquilenet.fr/videos/embed/d0595f11-87c7-478d-bc4a-57ac30107be5" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups"  frameborder="0"></iframe>
+</div>
 
 ### [Audio Programmer Meetup, July 2020](https://theaudioprogrammer.com/meetup/)
 <div class="videoWrapper">
