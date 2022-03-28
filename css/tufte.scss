@@ -153,16 +153,17 @@ h1 code, h2 code, h3 code { font-size: 0.80em; } //left in for no real reason
 
 /*-- Table styling section - For Tufte-Jekyll, booktabs style is default for Markdown tables  --*/
 
-table, table.booktabs { width: auto;  //making booktabs style tables the unstyled default in case someone uses Markdown styling
-                 margin: 0 auto;
+table, table.booktabs { width: 95%;  //making booktabs style tables the unstyled default in case someone uses Markdown styling
+                 margin: 0 0;
                  border-spacing: 0px;
-                 border-top: 2px solid $border-color;
-                 border-bottom: 2px solid $border-color; }
+                 border-top: none; //2px solid $border-color;
+                 border-bottom: none; //2px solid $border-color; 
+                }
 
 .booktabs th, th { border-bottom: 1px solid $border-color;
                padding: 0.65ex 0.5em 0.4ex 0.5em;
-               font-weight: normal;
-               text-align: center; }
+               font-weight: 500;
+               text-align: left; }
 
 th, td{ font-size: 1.2rem;
         line-height: 1.71428571;  }
@@ -330,7 +331,7 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
                                              margin-right: 1%;
                                              vertical-align: baseline;
                                              position: relative; }
-                            div.table-wrapper, table, table.booktabs { width: 85%; }
+                            div.table-wrapper, table, table.booktabs { width: 100%; }
                             div.table-wrapper { border-right: 1px solid #efefef; }
                             img { max-width: 100%; } }
 /*--- End of Basic Layout stuff from tufte.css ---*/

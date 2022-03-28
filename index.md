@@ -50,23 +50,19 @@ Slow software has a tendency to make my hands shake -- I prefer (Lua)LaTeX to we
 - PM has super strong development and tech artist skills which he is using on nice video games: [linkedin.com/in/pmplans](https://www.linkedin.com/in/pmplans/)
 - Mariana works on awesome projects on a breadth of technologies and led an RPG initiative in Brazil: [psychonautgirl.space](https://psychonautgirl.space)
 - Clément Bossut and Jaime Chao are very fun and nice to work with - they are part of the [Parti Collectif](https://www.particollectif.fr) and have done major work on the initial design of ossia.
+- Gaëlle introduced me to the wonderful world of scrobbling and is a world-class expert in [making beautiful graph visualizations](https://www.gaellericher.fr).
 - And so many I've forgotten, sorry people, you are all great!
 
 <br/>
 # Internets
-You may have seen me around these places:
-- [Twitter](https://twitter.com/jcelerie)
-- [Github](https://github.com/jcelerier)
-- [Instagram](https://instagram.com/jcelerie)
-- [LinkedIn](https://www.linkedin.com/in/jean-micha%C3%ABl-celerier-74991283)
-- [StackOverflow](https://stackoverflow.com/users/1495627/jean-micha%c3%abl-celerier)
-- [Reddit](https://www.reddit.com/u/jcelerier)
-- [Hacker News](https://news.ycombinator.com/threads?id=jcelerier)
-- [Blogger](https://pense-e-s.blogspot.com)
-- [Youtube](https://www.youtube.com/channel/UCm6OmUDgSDx8_BumsBwhLsQ/videos)
-- [libre.fm](https://libre.fm/user/jcelerier/stats)
-- [Twitch](https://www.twitch.tv/jcelerier)
-- [Vimeo](https://vimeo.com/user68290736)
-- [Soundcloud (old!)](https://soundcloud.com/lordvicomte)
-- [Myspace (old!)](https://myspace.com/doomsevilband)
-- IRC: jcelerier, often on [libera](https://libera.chat) & OFTC
+
+| Social      | Science and programming | Music, video, generative art and poems | Professional shitposting |
+| ----------- | ----------- |----------- |----------- |
+| [Twitter](https://twitter.com/jcelerie)      | [Google Scholar](https://scholar.google.com/citations?user=v1_52IMAAAAJ)       | [Youtube](https://www.youtube.com/channel/UCm6OmUDgSDx8_BumsBwhLsQ/videos) | [Hacker News](https://news.ycombinator.com/threads?id=jcelerier) |
+| [Instagram](https://instagram.com/jcelerie) | [Github](https://github.com/jcelerier)        | [Soundcloud (old!)](https://soundcloud.com/lordvicomte) | [Reddit](https://www.reddit.com/u/jcelerier) |
+| [libre.fm](https://libre.fm/user/jcelerier/stats)  | [LinkedIn](https://www.linkedin.com/in/jean-micha%C3%ABl-celerier-74991283)       | [Myspace (old!)](https://myspace.com/doomsevilband) | |
+|   | [StackOverflow](https://stackoverflow.com/users/1495627/jean-micha%c3%abl-celerier)       | [Blogger](https://pense-e-s.blogspot.com) | |
+|   | IRC: jcelerier on [libera](https://libera.chat), OFTC| [Twitch](https://www.twitch.tv/jcelerier) | |
+|   |       | [Vimeo](https://vimeo.com/user68290736) | |
+|   |       | [Instagram](https://instagram.com/jcelerier) | |
+

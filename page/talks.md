@@ -21,8 +21,9 @@ Upcoming !
 </div>
 
 ### [RustFest - Rust for the Arts, November 2021](https://rustfest.global/session/47-creating-interactive-digital-art-with-ossia-score-and-libossia/)
-
-Upcoming !
+<div class="videoWrapper">
+    <iframe src="https://www.youtube.com/embed/9ujRXHrJzog" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ### [IFC 2020, December 2020](https://ifc20.sciencesconf.org/)
 <div class="videoWrapper">
@@ -83,5 +84,7 @@ Upcoming !
 
 ### [FOSDEM 2016](https://archive.fosdem.org/2016/schedule/event/i_score/)
 <div class="videoWrapper">
-    <iframe src="https://www.youtube.com/embed/x3HYwu-S4OI" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+<video controls>
+    <source src="http://video.fosdem.org/2016/h2214/i-score.webm" type="video/webm">
+</video>
 </div>
