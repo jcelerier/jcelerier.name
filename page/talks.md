@@ -14,6 +14,13 @@ Upcoming !
     <iframe src="https://www.youtube.com/embed/2_cRaDxBe-A" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+## About Linux, open media, etc.
+### [LAS 2022](https://linuxappsummit.org/)
+<div class="videoWrapper">
+    <iframe src="https://www.youtube.com/embed/CBPefa0Ckq8?t=6906" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+
 ## About ossia
 ### [CCC rc3, December 2021](https://media.ccc.de/v/rc3-2021-chaosstudiohamburg-301-ossia-score-live-jam-and-talk#t=2012)
 <div class="videoWrapper">
