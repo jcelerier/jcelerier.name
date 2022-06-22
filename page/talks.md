@@ -6,8 +6,9 @@ order: 3
 
 ## About C++
 ### [ADC 2021, November 2021](https://adc21.sched.com/event/poiX)
-
-Upcoming ! 
+<div class="videoWrapper">
+    <iframe src="https://www.youtube.com/embed/xm9DU8r11BU" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ### [ACCU 2019](https://conference.accu.org/)
 <div class="videoWrapper">
@@ -17,9 +18,8 @@ Upcoming !
 ## About Linux, open media, etc.
 ### [LAS 2022](https://linuxappsummit.org/)
 <div class="videoWrapper">
-    <iframe src="https://www.youtube.com/embed/CBPefa0Ckq8?t=6906" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/CBPefa0Ckq8?start=6906" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
 </div>
-
 
 ## About ossia
 ### [CCC rc3, December 2021](https://media.ccc.de/v/rc3-2021-chaosstudiohamburg-301-ossia-score-live-jam-and-talk#t=2012)
